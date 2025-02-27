@@ -32,7 +32,7 @@ export default function Desktop() {
 
   return (
     <div className="p-4">
-      <div className="bg-black/60 text-white py-4 rounded-lg mb-1 flex justify-between items-center">
+      <div className="bg-black/60 text-white p-4 rounded-lg mb-1 flex justify-between items-center">
         <p className="pl-4">
           Your Current Coins: {coin} | Play Games to Earn Coins
         </p>
@@ -52,7 +52,7 @@ export default function Desktop() {
           }}
           className="bg-white text-black hover:bg-gray-200"
         >
-          Play 2048
+          2048
         </Button>
         <Button
           onClick={() => {
@@ -61,12 +61,18 @@ export default function Desktop() {
           }}
           className="bg-white text-black hover:bg-gray-200"
         >
-          Play Memory Game
+          Memory Game
         </Button>
       </div>
       {!isGame2048Open && !isMemoryGameOpen && (
         <Tabs defaultValue="calculator" className="h-full">
           <TabsList className="grid grid-cols-6 gap-4 h-12 bg-black/0">
+            <TabsTrigger
+              value="notes"
+              className="bg-gray-800 text-white hover:bg-red-600"
+            >
+              Notes
+            </TabsTrigger>
             <TabsTrigger
               value="calculator"
               className="bg-gray-800 text-white hover:bg-blue-600"
@@ -84,12 +90,6 @@ export default function Desktop() {
               className="bg-gray-800 text-white hover:bg-yellow-600"
             >
               Gallery
-            </TabsTrigger>
-            <TabsTrigger
-              value="notes"
-              className="bg-gray-800 text-white hover:bg-red-600"
-            >
-              Notes
             </TabsTrigger>
             <TabsTrigger
               value="mail"

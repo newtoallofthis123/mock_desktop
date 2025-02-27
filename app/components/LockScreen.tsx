@@ -21,7 +21,7 @@ export default function LockScreen({
       }}
       className="h-full flex items-center justify-center"
     >
-      <div className="bg-gradient-to-br to-[#740000] from-[#1e2b33] rounded-lg p-8 space-y-4 shadow-lg">
+      <div className="h-screen rounded-lg p-8 space-y-4 shadow-lg">
         <h1 className="text-4xl font-bold text-white text-center">
           Enter Password
         </h1>

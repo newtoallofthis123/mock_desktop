@@ -17,7 +17,7 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-gradient-to-br to-[#740000] from-[#1e2b33]  h-screen w-screen bg-red-800">
+    <main className="w-screen">
       {isLocked ? <LockScreen onUnlock={handleUnlock} /> : <Desktop />}
     </main>
   );

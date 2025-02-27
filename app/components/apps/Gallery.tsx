@@ -1,30 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import { useState } from "react";
 
-export default function Gallery() {
+export default function Gallery({ score }: { score: number }) {
   const images = ["/calendar.jpeg", "/76.jpeg", "/978.png", "clock.jpeg"];
 
   const [question1, setQuestion1] = useState("");
   const [question2, setQuestion2] = useState("");
   const [question3, setQuestion3] = useState("");
   const [locked, setLocked] = useState(true);
-  const [message, setMessage] = useState("");
   const [inQuestions, setInQuestions] = useState(false);
+  const [wrong, setWrong] = useState<Array<number>>([]);
+  const [unBlured, setUnBlured] = useState(false);
 
   function handleSubmit() {
-    if (question1.toLowerCase().includes("interstellar")) {
-      if (question2.includes("1999")) {
-        if (question3.toLowerCase().includes("lexibot")) {
-          setLocked(false);
-        } else {
-          setMessage("Incorrect answer");
-        }
-      } else {
-        setMessage("Incorrect answer");
-      }
+    const wrong: number[] = [];
+    let correct = true;
+    if (!question1.toLowerCase().includes("interstellar")) {
+      wrong.push(1);
+      correct = false;
     }
+    if (!question2.includes("1999")) {
+      wrong.push(2);
+      correct = false;
+    }
+    if (!question3.toLowerCase().includes("lexibot")) {
+      wrong.push(3);
+      correct = false;
+    }
+    setWrong(wrong);
+    setLocked(!correct);
   }
 
   return (
@@ -63,9 +68,54 @@ export default function Gallery() {
               <Button onClick={handleSubmit} className="bg-red-600 mt-5">
                 Submit
               </Button>
+              <div>
+                {wrong.length > 0 && (
+                  <p className="text-white pt-2">
+                    Questions {JSON.stringify(wrong)} are wrong
+                  </p>
+                )}
+              </div>
             </div>
           ) : (
-            <div>Unlocked</div>
+            <div className="flex flex-col justify-center items-center">
+              {unBlured ? (
+                <div className="flex flex-col justify-center items-center">
+                  <h1 className="text-2xl font-bold text-white mb-4">
+                    Congratulations! Now all you have to do is find the USB
+                  </h1>
+                  <video
+                    src="/unblur.mov"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="rounded-md"
+                    height="60%"
+                    width="60%"
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col justify-center items-center">
+                  <Button
+                    onClick={() => {
+                      if (score === 30) setUnBlured(true);
+                      // setUnBlured(true);
+                    }}
+                    className="bg-red-600"
+                  >
+                    Try Unblur (You need to have 30 coins)
+                  </Button>
+                  <video
+                    src="/blur.mov"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    height="60%"
+                    className="rounded-md"
+                    width="60%"
+                  />
+                </div>
+              )}
+            </div>
           )}
         </div>
       ) : (

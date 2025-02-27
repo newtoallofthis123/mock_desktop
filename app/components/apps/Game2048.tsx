@@ -348,10 +348,6 @@ const Game256: React.FC<Game256Props> = ({ handleWin }) => {
   return (
     <div className="flex flex-col items-center p-4">
       <div className="flex justify-between w-full max-w-md mb-4">
-        <div className="bg-gray-700 text-white p-2 rounded">
-          <p className="text-sm">Score</p>
-          <p className="text-xl font-bold">{score}</p>
-        </div>
         <button
           onClick={initGame}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
@@ -412,9 +408,13 @@ const Game256: React.FC<Game256Props> = ({ handleWin }) => {
         </button>
       </div>
 
-      <div className="mt-4 text-sm text-gray-600">
+      <div className="mt-4 text-sm text-white">
         <p>Use arrow keys or buttons to move tiles.</p>
-        <p>Reach 256 to win!</p>
+        <p>Reach 128 to win!</p>
+        <p>
+          Beware! Some buttons on the proff's are broken so might stop
+          working!!! Your goal is to get around that
+        </p>
       </div>
     </div>
   );
