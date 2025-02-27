@@ -101,6 +101,7 @@ const MemoryGame: React.FC<MemoryGameProps> = ({ onWin }) => {
     if (matchedPairs === EMOJIS.length) {
       if (!hasWon) {
         onWin();
+        setHasWon(true);
       } else {
         return;
       }
