@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Desktop() {
   const [unlockedApps, setUnlockedApps] = useState<string[]>([]);
-  const [coin, setCoin] = useState<number>(30);
+  const [coin, setCoin] = useState<number>(0);
   const [isGame2048Open, setIsGame2048Open] = useState<boolean>(false);
   const [isMemoryGameOpen, setIsMemoryGameOpen] = useState<boolean>(false);
 
