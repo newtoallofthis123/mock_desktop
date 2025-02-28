@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Desktop() {
   const [unlockedApps, setUnlockedApps] = useState<string[]>([]);
-  const [coin, setCoin] = useState<number>(0);
+  const [coin, setCoin] = useState<number>(30);
   const [isGame2048Open, setIsGame2048Open] = useState<boolean>(false);
   const [isMemoryGameOpen, setIsMemoryGameOpen] = useState<boolean>(false);
 
@@ -65,48 +65,48 @@ export default function Desktop() {
         </Button>
       </div>
       {!isGame2048Open && !isMemoryGameOpen && (
-        <Tabs defaultValue="calculator" className="h-full">
+        <Tabs defaultValue="notes" className="h-full">
           <TabsList className="grid grid-cols-6 gap-4 h-12 bg-black/0">
             <TabsTrigger
               value="notes"
-              className="bg-gray-800 text-white hover:bg-red-600"
+              className="bg-gray-800 p-3 text-white hover:bg-red-400"
             >
               Notes
             </TabsTrigger>
             <TabsTrigger
               value="calculator"
-              className="bg-gray-800 text-white hover:bg-blue-600"
+              className="bg-gray-800 p-3 text-white hover:bg-blue-400"
             >
               Calculator
             </TabsTrigger>
             <TabsTrigger
               value="messenger"
-              className="bg-gray-800 text-white hover:bg-green-600"
+              className="bg-gray-800 p-3 text-white hover:bg-green-400"
             >
               Messenger
             </TabsTrigger>
             <TabsTrigger
               value="gallery"
-              className="bg-gray-800 text-white hover:bg-yellow-600"
+              className="bg-gray-800 p-3 text-white hover:bg-yellow-400"
             >
               Gallery
             </TabsTrigger>
             <TabsTrigger
               value="mail"
-              className="bg-gray-800 text-white hover:bg-purple-600"
+              className="bg-gray-800 p-3 text-white hover:bg-purple-400"
             >
               Mail
             </TabsTrigger>
             <TabsTrigger
               value="reminders"
-              className="bg-gray-800 text-white hover:bg-pink-600"
+              className="bg-gray-800 p-3 text-white hover:bg-pink-400"
             >
               Reminders
             </TabsTrigger>
           </TabsList>
           <div className="mt-4 rounded-lg p-4 h-[calc(100%-5rem)]">
-            <TabsContent value="calculator">
-              <Calculator setScore={handleGameWin} />
+            <TabsContent value="notes">
+              <Notes />
             </TabsContent>
             <TabsContent value="messenger">
               {unlockedApps.includes("messenger") ? (
@@ -116,10 +116,10 @@ export default function Desktop() {
               )}
             </TabsContent>
             <TabsContent value="gallery">
-              <Gallery />
+              <Gallery score={coin} />
             </TabsContent>
-            <TabsContent value="notes">
-              <Notes />
+            <TabsContent value="calculator">
+              <Calculator setScore={handleGameWin} />
             </TabsContent>
             <TabsContent value="mail">
               {unlockedApps.includes("mail") ? (

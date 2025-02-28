@@ -70,7 +70,6 @@ But in this puzzle, I must stand at the end”
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-white mb-4">Notes</h2>
       <div className="grid grid-cols-1 gap-4">
         {notes.map((note, index) => (
           <Card key={index}>
