@@ -16,8 +16,16 @@ export default function Desktop() {
   const [coin, setCoin] = useState<number>(0);
   const [isGame2048Open, setIsGame2048Open] = useState<boolean>(false);
   const [isMemoryGameOpen, setIsMemoryGameOpen] = useState<boolean>(false);
+  const [gamePlayed2048, setGamePlayed2048] = useState<boolean>(false);
+  const [gamePlayedMemory, setGamePlayedMemory] = useState<boolean>(false);
 
-  function handleGameWin() {
+  function handleGameWin(game: string) {
+    if (game === "2048") {
+      setGamePlayed2048(true);
+    }
+    if (game === "Memory") {
+      setGamePlayedMemory(true);
+    }
     setCoin(coin + 10);
   }
 
@@ -25,7 +33,7 @@ export default function Desktop() {
     if (appName === "messenger" && password === "8GC623A") {
       setUnlockedApps([...unlockedApps, appName]);
     }
-    if (appName === "mail" && password === "amy-27-05") {
+    if (appName === "mail" && password === "amy-28-05") {
       setUnlockedApps([...unlockedApps, appName]);
     }
   };
@@ -119,7 +127,11 @@ export default function Desktop() {
               <Gallery score={coin} />
             </TabsContent>
             <TabsContent value="calculator">
-              <Calculator setScore={handleGameWin} />
+              <Calculator
+                setScore={() => {
+                  handleGameWin("Snake");
+                }}
+              />
             </TabsContent>
             <TabsContent value="mail">
               {unlockedApps.includes("mail") ? (
@@ -134,14 +146,14 @@ export default function Desktop() {
           </div>
         </Tabs>
       )}
-      {isGame2048Open && (
+      {isGame2048Open && !gamePlayed2048 && (
         <div>
-          <Game2048 handleWin={handleGameWin} />
+          <Game2048 handleWin={() => handleGameWin("2048")} />
         </div>
       )}
-      {isMemoryGameOpen && (
+      {isMemoryGameOpen && !gamePlayedMemory && (
         <div>
-          <MemoryGame onWin={handleGameWin} />
+          <MemoryGame onWin={() => handleGameWin("Memory")} />
         </div>
       )}
     </div>
